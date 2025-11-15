@@ -16,12 +16,28 @@ function convertPokemonToLi(pokemon) {
                     ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
 
-                <img src="${pokemon.photo}"
-                     alt="${pokemon.name}">
+                <img src="${pokemon.photo}" alt="${pokemon.name}">
+            </div>
+
+            <div class="info">
+                <p><strong>Altura:</strong> ${pokemon.height} m</p>
+                <p><strong>Peso:</strong> ${pokemon.weight} kg</p>
+
+                <p><strong>Habilidades:</strong> 
+                    ${pokemon.abilities.join(', ')}
+                </p>
+
+                <div>
+                    <strong>Stats:</strong>
+                    <ul>
+                        ${pokemon.stats.map(s => `<li>${s.name}: ${s.value}</li>`).join('')}
+                    </ul>
+                </div>
             </div>
         </li>
     `
 }
+
 
 function loadPokemonItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
